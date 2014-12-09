@@ -9,7 +9,7 @@
              <graph string="Sale Order Analysis" type="pivot" stacked="True">
                  <field name="user_id" type="row"/>
                  <field name="product_id" type="row"/>
-                 <field name="warehouse_id" type="col"/>
+                 <field name="section_id" type="col"/>
                  <field name="price_subtotal" type="measure"/>
                  <field name="product_uom_qty" type="measure"/>
              </graph>
