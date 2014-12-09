@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record id="view_sale_order_graph" model="ir.ui.view">
+         <field name="name">sale.order.graph</field>
+         <field name="model">sale.order.report</field>
+         <field name="arch" type="xml">
+             <graph string="Sale Order Analysis" type="pivot" stacked="True">
+                 <field name="user_id" type="row"/>
+                 <field name="product_id" type="row"/>
+                 <field name="warehouse_id" type="col"/>
+                 <field name="price_subtotal" type="measure"/>
+                 <field name="product_uom_qty" type="measure"/>
+             </graph>
+         </field>
+    </record>
+
+
+    <!-- record id="view_stock_inventory_filter" model="ir.ui.view">
+            <field name="name">stock.inventory.report.filter</field>
+            <field name="model">stock.inventory.report</field>
+            <field name="arch" type="xml">
+                <search string="Search Inventory Report">
+	            <group expand="1" string="Group By ...">
+	                   <filter string="Location" icon="terp-stage" domain="[]" context="{'group_by':'location_id'}" />
+	                   <filter string="Product" icon="terp-stage" domain="[]" context="{'group_by':'product_id'}" />
+	                   <filter string="Familia" icon="terp-stage" domain="[]" context="{'group_by':'familia'}" />
+	                   <filter string="Categoria" icon="terp-stage" domain="[]" context="{'group_by':'categoria'}" />
+	                   <filter string="Version" icon="terp-stage" domain="[]" context="{'group_by':'version'}" />
+	                   <filter string="SubCategoria" icon="terp-stage" domain="[]" context="{'group_by':'subcategoria'}" />
+                    </group>
+               </search>
+            </field>
+    </record -->
+
+
+
+    <record model="ir.actions.act_window" id="action_sale_order_report">
+        <field name="name">Sale Order Report</field>
+        <field name="res_model">sale.order.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="context">{'search_default_product':1,'group_by':['product_id']}</field>
+        <field name="view_id" ref="view_sale_order_graph" />
+        <!-- field name="search_view_id" ref="view_stock_inventory_filter" / -->
+    </record>
+
+
+    <menuitem
+            id="menu_sale_order_report"
+            name="Sale Order Report"
+            parent="base.menu_sales" sequence="10"
+	    action="action_sale_order_report"	/>
+
+   </data>
+</openerp>
