@@ -13,6 +13,10 @@
                  <field name="move_type" type="row"/>
                  <field name="picking_type_id" type="row"/>
                  <field name="product_id" type="row"/>
+                 <field name="familia" type="row"/>
+                 <field name="categoria" type="row"/>
+                 <field name="subcategoria" type="row"/>
+                 <field name="version" type="row"/>
                  <field name="location_id" type="col"/>
                  <field name="location_dest_id" type="row"/>
                  <field name="product_uom_qty" type="measure"/>
@@ -31,10 +35,10 @@
 	                   <filter string="Destination Location" icon="terp-stage" domain="[]" context="{'group_by':'location_dest_id'}" />
 	                   <filter string="Product" icon="terp-stage" domain="[]" context="{'group_by':'product_id'}" />
 	                   <filter string="Partner" icon="terp-stage" domain="[]" context="{'group_by':'partner_id'}" />
-	                   <!--filter string="Familia" icon="terp-stage" domain="[]" context="{'group_by':'familia'}" />
+	                   <filter string="Familia" icon="terp-stage" domain="[]" context="{'group_by':'familia'}" />
 	                   <filter string="Categoria" icon="terp-stage" domain="[]" context="{'group_by':'categoria'}" />
 	                   <filter string="Version" icon="terp-stage" domain="[]" context="{'group_by':'version'}" />
-	                   <filter string="SubCategoria" icon="terp-stage" domain="[]" context="{'group_by':'subcategoria'}" / -->
+	                   <filter string="SubCategoria" icon="terp-stage" domain="[]" context="{'group_by':'subcategoria'}" />
                     </group>
                </search>
             </field>
