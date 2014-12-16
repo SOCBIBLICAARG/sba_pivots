@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record id="view_stock_picking_graph" model="ir.ui.view">
+         <field name="name">stock.picking.graph</field>
+         <field name="model">stock.picking.report</field>
+         <field name="arch" type="xml">
+             <graph string="Stock Picking Analysis" type="pivot" stacked="True">
+                 <field name="partner_id" type="row"/>
+                 <field name="date" type="row"/>
+                 <field name="date_done" type="row"/>
+                 <field name="move_type" type="row"/>
+                 <field name="picking_type_id" type="row"/>
+                 <field name="product_id" type="row"/>
+                 <field name="location_id" type="col"/>
+                 <field name="location_dest_id" type="row"/>
+                 <field name="product_uom_qty" type="measure"/>
+             </graph>
+         </field>
+    </record>
+
+
+    <record id="view_stock_picking_filter" model="ir.ui.view">
+            <field name="name">stock.picking.report.filter</field>
+            <field name="model">stock.picking.report</field>
+            <field name="arch" type="xml">
+                <search string="Search Picking Report">
+	            <group expand="1" string="Group By ...">
+	                   <filter string="Source Location" icon="terp-stage" domain="[]" context="{'group_by':'location_id'}" />
+	                   <filter string="Destination Location" icon="terp-stage" domain="[]" context="{'group_by':'location_dest_id'}" />
+	                   <filter string="Product" icon="terp-stage" domain="[]" context="{'group_by':'product_id'}" />
+	                   <filter string="Partner" icon="terp-stage" domain="[]" context="{'group_by':'partner_id'}" />
+	                   <!--filter string="Familia" icon="terp-stage" domain="[]" context="{'group_by':'familia'}" />
+	                   <filter string="Categoria" icon="terp-stage" domain="[]" context="{'group_by':'categoria'}" />
+	                   <filter string="Version" icon="terp-stage" domain="[]" context="{'group_by':'version'}" />
+	                   <filter string="SubCategoria" icon="terp-stage" domain="[]" context="{'group_by':'subcategoria'}" / -->
+                    </group>
+               </search>
+            </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_stock_picking_report">
+        <field name="name">Stock Picking Report</field>
+        <field name="res_model">stock.picking.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="context">{'search_default_product':1,'group_by':['product_id']}</field>
+        <field name="view_id" ref="view_stock_picking_graph" />
+        <field name="search_view_id" ref="view_stock_picking_filter" />
+    </record>
+
+
+    <menuitem
+            id="menu_stock_picking_report"
+            name="Stock Picking Report"
+            parent="stock.menu_stock_warehouse_mgmt" sequence="10"
+	    action="action_stock_picking_report"	/>
+
+   </data>
+</openerp>
